@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Portal Berita</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            color: #2a5298;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .form-container {
+            position: relative;
+        }
+
+        .form {
+            display: none;
+        }
+
+        .form.active {
+            display: block;
+        }
+
+        .form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #2a5298;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #2a5298;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #1e3c72;
+        }
+
+        .switch-form {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .switch-form a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .switch-form a:hover {
+            text-decoration: underline;
+        }
+
+        .message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .back-to-news {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-to-news a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-to-news a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1><span>📰</span> Portal Berita</h1>
+        </div>
+
+        <div class="form-container">
+            <!-- Login Form -->
+            <div class="form active" id="loginForm">
+                <h2>Masuk ke Akun Anda</h2>
+                <div class="message" id="loginMessage"></div>
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn">Masuk</button>
+                </form>
+                <div class="switch-form">
+                    Belum punya akun? <a id="showRegister">Daftar di sini</a>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div class="form" id="registerForm">
+                <h2>Daftar Akun Baru</h2>
+                <div class="message" id="registerMessage"></div>
+                <form id="registerFormElement">
+                    <div class="form-group">
+                        <label for="registerName">Nama Lengkap</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Konfirmasi Password</label>
+                        <input type="password" id="registerConfirmPassword" required>
+                    </div>
+                    <button type="submit" class="btn">Daftar</button>
+                </form>
+                <div class="switch-form">
+                    Sudah punya akun? <a id="showLogin">Masuk di sini</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="back-to-news">
+            <a href="index.html">← Kembali ke Beranda</a>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

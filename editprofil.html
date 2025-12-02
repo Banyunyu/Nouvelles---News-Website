@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profil - Portal Berita</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            color: #2a5298;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2a5298;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .avatar-upload {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 3px solid #2a5298;
+        }
+
+        .avatar-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar-preview .avatar-placeholder {
+            font-size: 2rem;
+            color: #666;
+        }
+
+        .avatar-upload input {
+            display: none;
+        }
+
+        .avatar-upload label {
+            background: #2a5298;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .avatar-upload label:hover {
+            background: #1e3c72;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #2a5298;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1e3c72;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+
+        .message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .back-to-news {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-to-news a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-to-news a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1><span>📰</span> Edit Profil</h1>
+        </div>
+
+        <div class="form">
+            <h2>Edit Informasi Profil</h2>
+            <div class="message" id="message"></div>
+            
+            <form id="profileForm">
+                <div class="avatar-upload">
+                    <div class="avatar-preview" id="avatarPreview">
+                        <div class="avatar-placeholder">👤</div>
+                    </div>
+                    <input type="file" id="avatarInput" accept="image/*">
+                    <label for="avatarInput">Pilih Foto</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Nama Lengkap</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">Bio / Deskripsi Diri</label>
+                    <textarea id="bio" placeholder="Ceritakan sedikit tentang diri Anda..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Lokasi</label>
+                    <input type="text" id="location" placeholder="Kota, Negara">
+                </div>
+
+                <div class="form-group">
+                    <label for="website">Website</label>
+                    <input type="url" id="website" placeholder="https://example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Nomor Telepon</label>
+                    <input type="tel" id="phone" placeholder="+62 xxx xxxx xxxx">
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="back-to-news">
+            <a href="index.html">← Kembali ke Beranda</a>
+        </div>
+    </div>
+
+    <script src="editprofil.js"></script>
+</body>
+</html>
